@@ -793,7 +793,7 @@ spec:
         - server
         - --auth-mode
         - client
-        image: argoproj/argocli:v3.0.2
+        image: argo-ubuntu-cli
         name: argo-server
         ports:
         - containerPort: 2746
@@ -925,7 +925,7 @@ spec:
         - --configmap
         - workflow-controller-configmap
         - --executor-image
-        - argoproj/argoexec:v3.0.2
+        - argo-ubuntu-exec
         - --namespaced
         command:
         - workflow-controller
@@ -935,7 +935,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.name
-        image: argoproj/workflow-controller:v3.0.2
+        image: argo-ubuntu-workflow-controller
         livenessProbe:
           httpGet:
             path: /metrics

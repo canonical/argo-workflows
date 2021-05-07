@@ -38,7 +38,7 @@ COPY . .
 
 ####################################################################################################
 
-FROM debian:10.7-slim as argoexec-base
+FROM ubuntu:20.04 as argoexec-base
 
 ARG DOCKER_CHANNEL
 ARG DOCKER_VERSION
@@ -74,7 +74,15 @@ COPY hack/nsswitch.conf /etc/
 
 ####################################################################################################
 
-FROM node:14.0.0 as argo-ui
+FROM ubuntu:20.04 as argo-ui
+
+ENV DEBIAN_FRONTEND=noninteractive 
+
+RUN apt update
+RUN apt install git --yes
+RUN apt install nodejs --yes
+RUN apt install npm --yes
+RUN npm install --global yarn
 
 COPY ui/package.json ui/yarn.lock ui/
 
@@ -83,6 +91,7 @@ RUN JOBS=max yarn --cwd ui install --network-timeout 1000000
 COPY ui ui
 COPY api api
 
+ARG NODE_OPTIONS="--max-old-space-size=8192"
 RUN JOBS=max yarn --cwd ui build
 
 ####################################################################################################
@@ -134,7 +143,15 @@ ENTRYPOINT [ "argoexec" ]
 
 ####################################################################################################
 
-FROM scratch as workflow-controller
+FROM argoexec-base as argoexec-dev
+
+ADD argoexec /usr/local/bin/
+
+ENTRYPOINT [ "argoexec" ]
+
+####################################################################################################
+
+FROM ubuntu:20.04 as workflow-controller
 
 USER 8737
 
@@ -145,7 +162,7 @@ ENTRYPOINT [ "workflow-controller" ]
 
 ####################################################################################################
 
-FROM scratch as argocli
+FROM ubuntu:20.04 as argocli
 
 USER 8737
 
