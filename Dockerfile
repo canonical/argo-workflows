@@ -78,10 +78,11 @@ FROM ubuntu:20.04 as argo-ui
 
 ENV DEBIAN_FRONTEND=noninteractive 
 
-RUN apt update
-RUN apt install git --yes
-RUN apt install nodejs --yes
-RUN apt install npm --yes
+RUN apt update && \
+    apt install git --yes  && \
+    apt install nodejs --yes && \
+    apt install npm --yes
+
 RUN npm install --global yarn
 
 COPY ui/package.json ui/yarn.lock ui/
