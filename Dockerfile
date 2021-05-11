@@ -143,14 +143,6 @@ ENTRYPOINT [ "argoexec" ]
 
 ####################################################################################################
 
-FROM argoexec-base as argoexec-dev
-
-ADD argoexec /usr/local/bin/
-
-ENTRYPOINT [ "argoexec" ]
-
-####################################################################################################
-
 FROM ubuntu:20.04 as workflow-controller
 
 USER 8737
