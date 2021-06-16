@@ -15,6 +15,10 @@ COPY --from=golang /usr/local/go/ /usr/local/go/
 ENV PATH /usr/local/go/bin:$PATH
 ENV GO111MODULE=on
 
+ARG http_proxy
+ARG https_proxy
+ARG no_proxy
+ARG NO_PROXY
 ARG GOPROXY
 ARG GOSUMDB
 
