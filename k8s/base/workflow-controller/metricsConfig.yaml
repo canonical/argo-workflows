@@ -1,0 +1,4 @@
+disableLegacy: true
+enabled: true
+path: /metrics
+port: 9090
