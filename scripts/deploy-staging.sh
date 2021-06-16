@@ -52,10 +52,10 @@ $KUBECTL apply -k k8s/generated
 
 case ${STAGE} in
 develop)
-	NAMESPACE=ua-contracts-develop
+	NAMESPACE=argo
 	;;
 staging)
-	NAMESPACE=staging
+	NAMESPACE=argo
 	;;
 esac
 
