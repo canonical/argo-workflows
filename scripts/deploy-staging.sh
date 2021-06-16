@@ -21,14 +21,30 @@ VERSION=`git rev-parse --verify HEAD`
 gitver=`git describe --dirty --always`
 
 $DOCKER build --target argocli \
+	--build-arg http_proxy \
+	--build-arg https_proxy \
+	--build-arg no_proxy \
+	--build-arg NO_PROXY \
+    --build-arg GOPROXY \
 	-t ${DOCKER_REGISTRY}/argo-ubuntu-cli:$VERSION  .
+    
 $DOCKER push ${DOCKER_REGISTRY}/argo-ubuntu-cli:$VERSION
 
 $DOCKER build --target argo-exec \
+	--build-arg http_proxy \
+	--build-arg https_proxy \
+	--build-arg no_proxy \
+	--build-arg NO_PROXY \
+    --build-arg GOPROXY \
 	-t ${DOCKER_REGISTRY}/argo-ubuntu-exec:$VERSION  .
 $DOCKER push ${DOCKER_REGISTRY}/argo-ubuntu-exec:$VERSION
 
 $DOCKER build --target workflow-controller \
+	--build-arg http_proxy \
+	--build-arg https_proxy \
+	--build-arg no_proxy \
+	--build-arg NO_PROXY \
+    --build-arg GOPROXY \
 	-t ${DOCKER_REGISTRY}/argo-ubuntu-workflow-controller:$VERSION  .
 $DOCKER push ${DOCKER_REGISTRY}/argo-ubuntu-workflow-controller:$VERSION
 

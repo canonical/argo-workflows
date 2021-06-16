@@ -15,6 +15,9 @@ COPY --from=golang /usr/local/go/ /usr/local/go/
 ENV PATH /usr/local/go/bin:$PATH
 ENV GO111MODULE=on
 
+ARG GOPROXY
+ARG GOSUMDB
+
 RUN apt-get update && apt-get --no-install-recommends install -y \
     git \
     make \
