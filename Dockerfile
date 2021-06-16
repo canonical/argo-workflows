@@ -6,7 +6,14 @@ ARG DOCKER_VERSION=18.09.1
 ARG KUBECTL_VERSION=1.19.6
 ARG JQ_VERSION=1.6
 
-FROM golang:1.15.7 as builder
+FROM golang:1.15.7 as golang
+RUN go version
+
+FROM ubuntu:20.04 as builder
+
+COPY --from=golang /usr/local/go/ /usr/local/go/
+ENV PATH /usr/local/go/bin:$PATH
+ENV GO111MODULE=on
 
 RUN apt-get update && apt-get --no-install-recommends install -y \
     git \
