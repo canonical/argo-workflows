@@ -30,7 +30,7 @@ $DOCKER build --target argocli \
     
 $DOCKER push ${DOCKER_REGISTRY}/argo-ubuntu-cli:$VERSION
 
-$DOCKER build --target argo-exec \
+$DOCKER build --target argoexec \
 	--build-arg http_proxy \
 	--build-arg https_proxy \
 	--build-arg no_proxy \
