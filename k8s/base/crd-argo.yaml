@@ -126,6 +126,19 @@ spec:
     - wf
     singular: workflow
   scope: Namespaced
+  # This top-level definition is only needed for
+  # the old beta version of CRDs and can go away
+  # once we are on newer server (1.16+) + client.
+  additionalPrinterColumns:
+  - description: Status of the workflow
+    jsonPath: .status.phase
+    name: Status
+    type: string
+  - description: When the workflow was started
+    format: date-time
+    jsonPath: .status.startedAt
+    name: Age
+    type: date
   versions:
   - additionalPrinterColumns:
     - description: Status of the workflow
