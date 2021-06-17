@@ -27,6 +27,7 @@ RUN apt-get update && apt-get --no-install-recommends install -y \
     make \
     apt-utils \
     apt-transport-https \
+    tzdata \
     ca-certificates \
     wget \
     gcc \
