@@ -14,6 +14,8 @@ FROM ubuntu:20.04 as builder
 COPY --from=golang /usr/local/go/ /usr/local/go/
 ENV PATH /usr/local/go/bin:$PATH
 ENV GO111MODULE=on
+ENV DEBIAN_FRONTEND noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN true
 
 ARG http_proxy
 ARG https_proxy
