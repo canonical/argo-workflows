@@ -134,24 +134,24 @@ spec:
   # once we are on newer server (1.16+) + client.
   additionalPrinterColumns:
   - description: Status of the workflow
-    jsonPath: .status.phase
+    JSONPath: .status.phase
     name: Status
     type: string
   - description: When the workflow was started
     format: date-time
-    jsonPath: .status.startedAt
+    JSONPath: .status.startedAt
     name: Age
     type: date
   version: alpha1
   # versions:
   # - additionalPrinterColumns:
   #   - description: Status of the workflow
-  #     jsonPath: .status.phase
+  #     JSONPath: .status.phase
   #     name: Status
   #     type: string
   #   - description: When the workflow was started
   #     format: date-time
-  #     jsonPath: .status.startedAt
+  #     JSONPath: .status.startedAt
   #     name: Age
   #     type: date
   # - name: v1alpha1
