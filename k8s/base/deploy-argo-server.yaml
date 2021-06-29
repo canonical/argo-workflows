@@ -794,6 +794,7 @@ spec:
         - --auth-mode
         - client
         - --secure=false
+        - --loglevel=debug
         image: argo-ubuntu-cli
         name: argo-server
         ports:

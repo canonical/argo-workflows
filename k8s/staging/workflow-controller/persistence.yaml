@@ -6,7 +6,7 @@ nodeStatusOffLoad: true
 archive: true
 archiveTTL: 7d
 postgresql:
-  host: postgres
+  host: csdb.staging.canonical.com
   port: 5432
   database: argo
   tableName: argo_workflows
