@@ -793,6 +793,7 @@ spec:
         - server
         - --auth-mode
         - client
+        - --secure=false
         image: argo-ubuntu-cli
         name: argo-server
         ports:
@@ -802,7 +803,8 @@ spec:
           httpGet:
             path: /
             port: 2746
-            scheme: HTTPS
+            # scheme: HTTPS
+            scheme: HTTP
           initialDelaySeconds: 10
           periodSeconds: 20
         securityContext:
