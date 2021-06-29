@@ -6,6 +6,8 @@ nodeStatusOffLoad: true
 archive: true
 archiveTTL: 7d
 postgresql:
+  ssl: true
+  sslMode: require
   host: postgres
   port: 5432
   database: argo

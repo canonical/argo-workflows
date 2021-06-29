@@ -10,6 +10,8 @@ postgresql:
   port: 5432
   database: argo
   tableName: argo_workflows
+  ssl: true
+  sslMode: require
   userNameSecret:
     name: argo-postgres-config
     key: username
