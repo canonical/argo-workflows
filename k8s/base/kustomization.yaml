@@ -12,7 +12,7 @@ generatorOptions:
 configMapGenerator:
 - name: workflow-controller-configmap
   literals:
-    - containerRuntimeExecutor=docker
+    - containerRuntimeExecutor=pns
   files:
   - executor=workflow-controller/executor.yaml
   - containerRuntimeExecutors=workflow-controller/containerRuntimeExecutors.yaml
