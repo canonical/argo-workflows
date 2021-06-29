@@ -14,9 +14,10 @@ spec:
     - cwft
     singular: clusterworkflowtemplate
   scope: Cluster
+  version: alpha1
   # versions:
   # - name: v1alpha1
-  schema:
+  validation:
     openAPIV3Schema:
       properties:
         apiVersion:
@@ -51,9 +52,10 @@ spec:
     - cronwf
     singular: cronworkflow
   scope: Namespaced
+  version: alpha1
   # versions:
   # - name: v1alpha1
-  schema:
+  validation:
     openAPIV3Schema:
       properties:
         apiVersion:
@@ -90,9 +92,10 @@ spec:
     - wfeb
     singular: workfloweventbinding
   scope: Namespaced
+  version: alpha1
   # versions:
   # - name: v1alpha1
-  schema:
+  validation:
     openAPIV3Schema:
       properties:
         apiVersion:
@@ -139,6 +142,7 @@ spec:
     jsonPath: .status.startedAt
     name: Age
     type: date
+  version: alpha1
   # versions:
   # - additionalPrinterColumns:
   #   - description: Status of the workflow
@@ -151,7 +155,7 @@ spec:
   #     name: Age
   #     type: date
   # - name: v1alpha1
-  schema:
+  validation:
     openAPIV3Schema:
       properties:
         apiVersion:
@@ -189,9 +193,10 @@ spec:
     - wftmpl
     singular: workflowtemplate
   scope: Namespaced
+  version: alpha1
   # versions:
   # - name: v1alpha1
-  schema:
+  validation:
     openAPIV3Schema:
       properties:
         apiVersion:
