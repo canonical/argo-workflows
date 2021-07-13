@@ -6,9 +6,11 @@ spec:
   template:
     spec:
       containers:
-      - args:
+      - name: workflow-controller
+        args:
         - --configmap
         - workflow-controller-configmap
         - --executor-image
         - stg-commercial-systems.docker-registry.canonical.com/argo-ubuntu-exec
         - --namespaced
+        
