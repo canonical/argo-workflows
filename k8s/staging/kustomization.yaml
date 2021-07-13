@@ -3,6 +3,8 @@ kind: Kustomization
 namespace: argo
 bases:
 - ../base
+patchesStrategicMerge:
+- deploy-workflow-controller.yaml
 configMapGenerator:
 - name: workflow-controller-configmap
   behavior: merge
