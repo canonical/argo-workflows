@@ -51,7 +51,7 @@ $DOCKER push ${DOCKER_REGISTRY}/argo-ubuntu-workflow-controller:$VERSION
 # Configure the images.
 mkdir -p k8s/generated
 
-cat << EOF > k8s/generated/deployment-workflow-controller.yaml
+cat << EOF > k8s/generated/deploy-workflow-controller.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
