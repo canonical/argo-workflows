@@ -50,11 +50,32 @@ $DOCKER push ${DOCKER_REGISTRY}/argo-ubuntu-workflow-controller:$VERSION
 
 # Configure the images.
 mkdir -p k8s/generated
+
+cat << EOF > k8s/generated/deployment-workflow-controller.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workflow-controller
+spec:
+  template:
+    spec:
+      containers:
+      - name: workflow-controller
+        args:
+        - --configmap
+        - workflow-controller-configmap
+        - --executor-image
+        - ${DOCKER_REGISTRY}/argo-ubuntu-exec:${VERSION}
+        - --namespaced
+EOF
+
 cat << EOF > k8s/generated/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 bases:
 - ../${STAGE}
+patchesStrategicMerge:
+- deploy-workflow-controller.yaml
 images:
 - name: ${DOCKER_REGISTRY}/argo-ubuntu-cli
   newTag: ${VERSION}
