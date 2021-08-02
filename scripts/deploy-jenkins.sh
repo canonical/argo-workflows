@@ -87,15 +87,6 @@ EOF
 
 $KUBECTL apply -k k8s/generated
 
-case ${STAGE} in
-develop)
-	NAMESPACE=argo
-	;;
-staging)
-	NAMESPACE=argo
-	;;
-esac
-
 # Wait for rollout to complete
-$KUBECTL -n $NAMESPACE rollout status deployment/argo-server --timeout 3m
-$KUBECTL -n $NAMESPACE rollout status deployment/workflow-controller --timeout 2m
+$KUBECTL -n argo-$STAGE rollout status deployment/argo-server --timeout 3m
+$KUBECTL -n argo-$STAGE rollout status deployment/workflow-controller --timeout 2m
