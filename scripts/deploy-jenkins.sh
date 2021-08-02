@@ -85,7 +85,7 @@ images:
   newTag: ${VERSION}
 EOF
 
-$KUBECTL apply -k k8s/generated
+$KUBECTL apply -n argo-$STAGE -k k8s/generated
 
 # Wait for rollout to complete
 $KUBECTL -n argo-$STAGE rollout status deployment/argo-server --timeout 3m
