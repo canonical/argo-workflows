@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: argo-production
+bases:
+- ../base
+configMapGenerator:
+- name: workflow-controller-configmap
+  behavior: merge
+  files:
+    - persistence=workflow-controller/persistence.yaml
+images:
+- name: argo-ubuntu-cli
+  newName: prod-commercial-systems.docker-registry.canonical.com:443/argo-ubuntu-cli
+- name: argo-ubuntu-exec
+  newName: prod-commercial-systems.docker-registry.canonical.com:443/argo-ubuntu-exec
+- name: argo-ubuntu-workflow-controller
+  newName: prod-commercial-systems.docker-registry.canonical.com:443/argo-ubuntu-workflow-controller
