@@ -3,8 +3,6 @@ kind: Kustomization
 namespace: argo-production
 bases:
 - ../base
-patchesStrategicMerge:
-  - deploy-argo-server.yaml
 configMapGenerator:
 - name: workflow-controller-configmap
   behavior: merge
