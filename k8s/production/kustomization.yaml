@@ -5,7 +5,6 @@ bases:
 - ../base
 patchesStrategicMerge:
   - deploy-argo-server.yaml
-  - deploy-workflow-controller.yaml
 configMapGenerator:
 - name: workflow-controller-configmap
   behavior: merge
