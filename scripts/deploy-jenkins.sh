@@ -26,9 +26,7 @@ $DOCKER build --target argocli \
 	--build-arg no_proxy \
 	--build-arg NO_PROXY \
     --build-arg GOPROXY \
-	-t ${DOCKER_REGISTRY}/argo-ubuntu-cli:$VERSION  .
-    
-$DOCKER push ${DOCKER_REGISTRY}/argo-ubuntu-cli:$VERSION
+	-t ${DOCKER_REGISTRY}/argo-ubuntu-cli-${STAGE}:$VERSION  .
 
 $DOCKER build --target argoexec \
 	--build-arg http_proxy \
@@ -36,8 +34,7 @@ $DOCKER build --target argoexec \
 	--build-arg no_proxy \
 	--build-arg NO_PROXY \
     --build-arg GOPROXY \
-	-t ${DOCKER_REGISTRY}/argo-ubuntu-exec:$VERSION  .
-$DOCKER push ${DOCKER_REGISTRY}/argo-ubuntu-exec:$VERSION
+	-t ${DOCKER_REGISTRY}/argo-ubuntu-exec-${STAGE}:$VERSION  .
 
 $DOCKER build --target workflow-controller \
 	--build-arg http_proxy \
@@ -45,8 +42,11 @@ $DOCKER build --target workflow-controller \
 	--build-arg no_proxy \
 	--build-arg NO_PROXY \
     --build-arg GOPROXY \
-	-t ${DOCKER_REGISTRY}/argo-ubuntu-workflow-controller:$VERSION  .
-$DOCKER push ${DOCKER_REGISTRY}/argo-ubuntu-workflow-controller:$VERSION
+	-t ${DOCKER_REGISTRY}/argo-ubuntu-workflow-controller-${STAGE}:$VERSION  .
+
+$DOCKER push ${DOCKER_REGISTRY}/argo-ubuntu-cli-${STAGE}:$VERSION
+$DOCKER push ${DOCKER_REGISTRY}/argo-ubuntu-exec-${STAGE}:$VERSION
+$DOCKER push ${DOCKER_REGISTRY}/argo-ubuntu-workflow-controller-${STAGE}:$VERSION
 
 # Configure the images.
 mkdir -p k8s/generated
@@ -61,11 +61,12 @@ spec:
     spec:
       containers:
       - name: workflow-controller
+        image: ${DOCKER_REGISTRY}/argo-ubuntu-workflow-controller-${STAGE}
         args:
         - --configmap
         - workflow-controller-configmap
         - --executor-image
-        - ${DOCKER_REGISTRY}/argo-ubuntu-exec:${VERSION}
+        - ${DOCKER_REGISTRY}/argo-ubuntu-exec-${STAGE}:${VERSION}
         - --namespaced
 EOF
 
@@ -77,11 +78,11 @@ bases:
 patchesStrategicMerge:
 - deploy-workflow-controller.yaml
 images:
-- name: ${DOCKER_REGISTRY}/argo-ubuntu-cli
+- name: ${DOCKER_REGISTRY}/argo-ubuntu-cli-${STAGE}
   newTag: ${VERSION}
-- name: ${DOCKER_REGISTRY}/argo-ubuntu-exec
+- name: ${DOCKER_REGISTRY}/argo-ubuntu-exec-${STAGE}
   newTag: ${VERSION}
-- name: ${DOCKER_REGISTRY}/argo-ubuntu-workflow-controller
+- name: ${DOCKER_REGISTRY}/argo-ubuntu-workflow-controller-${STAGE}
   newTag: ${VERSION}
 EOF
 

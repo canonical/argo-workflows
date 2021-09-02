@@ -3,6 +3,9 @@ kind: Kustomization
 namespace: argo-production
 bases:
 - ../base
+patchesStrategicMerge:
+  - deploy-argo-server.yaml
+  - deploy-workflow-controller.yaml
 configMapGenerator:
 - name: workflow-controller-configmap
   behavior: merge
@@ -10,8 +13,8 @@ configMapGenerator:
     - persistence=workflow-controller/persistence.yaml
 images:
 - name: argo-ubuntu-cli
-  newName: prod-commercial-systems.docker-registry.canonical.com/argo-ubuntu-cli
+  newName: stg-commercial-systems.docker-registry.canonical.com/argo-ubuntu-cli-production
 - name: argo-ubuntu-exec
-  newName: prod-commercial-systems.docker-registry.canonical.com/argo-ubuntu-exec
+  newName: stg-commercial-systems.docker-registry.canonical.com/argo-ubuntu-exec-production
 - name: argo-ubuntu-workflow-controller
-  newName: prod-commercial-systems.docker-registry.canonical.com/argo-ubuntu-workflow-controller
+  newName: stg-commercial-systems.docker-registry.canonical.com/argo-ubuntu-workflow-controller-production
