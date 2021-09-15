@@ -8,9 +8,6 @@ spec:
       app: argo-server
   template:
     metadata:
-      annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/port: "3010"
       labels:
         app: argo-server
     spec:

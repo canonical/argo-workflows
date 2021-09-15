@@ -10,7 +10,7 @@ spec:
     metadata:
       annotations:
         prometheus.io/scrape: "true"
-        prometheus.io/port: "3011"
+        prometheus.io/port: "9090"
       labels:
         app: workflow-controller
     spec:
