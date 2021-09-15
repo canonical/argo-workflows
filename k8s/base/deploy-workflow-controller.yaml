@@ -8,6 +8,9 @@ spec:
       app: workflow-controller
   template:
     metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "3011"
       labels:
         app: workflow-controller
     spec:
