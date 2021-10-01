@@ -11,6 +11,8 @@ spec:
       labels:
         app: workflow-controller
     spec:
+      imagePullSecrets:
+      - name: image-pull-secret
       containers:
       - args:
         - --configmap
