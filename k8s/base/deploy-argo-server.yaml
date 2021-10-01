@@ -21,6 +21,8 @@ spec:
         - server
         - --auth-mode
         - client
+        - --secure=false
+        - --loglevel=debug
         image: argo-ubuntu-cli
         resources:
           limits:
