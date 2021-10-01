@@ -6,7 +6,7 @@
 
 set -e
 
-DOCKER_REGISTRY=${DOCKER_REGISTRY:-stg-commercial-systems.docker-registry.canonical.com}
+DOCKER_REGISTRY=${DOCKER_REGISTRY:-stg-commercial-systems.ps5.docker-registry.canonical.com}
 STAGE=${STAGE:-staging}
 
 DOCKER=${DOCKER:-docker}
@@ -61,12 +61,12 @@ spec:
     spec:
       containers:
       - name: workflow-controller
-        image: ${DOCKER_REGISTRY}/argo-ubuntu-workflow-controller-${STAGE}-ps5
+        image: ${DOCKER_REGISTRY}/argo-ubuntu-workflow-controller-${STAGE}
         args:
         - --configmap
         - workflow-controller-configmap
         - --executor-image
-        - ${DOCKER_REGISTRY}/argo-ubuntu-exec-${STAGE}-ps5:${VERSION}
+        - ${DOCKER_REGISTRY}/argo-ubuntu-exec-${STAGE}:${VERSION}
         - --namespaced
 EOF
 
@@ -78,11 +78,11 @@ bases:
 patchesStrategicMerge:
 - deploy-workflow-controller.yaml
 images:
-- name: ${DOCKER_REGISTRY}/argo-ubuntu-cli-${STAGE}-ps5
+- name: ${DOCKER_REGISTRY}/argo-ubuntu-cli-${STAGE}
   newTag: ${VERSION}
-- name: ${DOCKER_REGISTRY}/argo-ubuntu-exec-${STAGE}-ps5
+- name: ${DOCKER_REGISTRY}/argo-ubuntu-exec-${STAGE}
   newTag: ${VERSION}
-- name: ${DOCKER_REGISTRY}/argo-ubuntu-workflow-controller-${STAGE}-ps5
+- name: ${DOCKER_REGISTRY}/argo-ubuntu-workflow-controller-${STAGE}
   newTag: ${VERSION}
 EOF
 

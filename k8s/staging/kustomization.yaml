@@ -11,8 +11,8 @@ configMapGenerator:
     - persistence=workflow-controller/persistence.yaml
 images:
 - name: argo-ubuntu-cli
-  newName: stg-commercial-systems.docker-registry.canonical.com/argo-ubuntu-cli-staging-ps5
+  newName: stg-commercial-systems.ps5.docker-registry.canonical.com/argo-ubuntu-cli-staging
 - name: argo-ubuntu-exec
-  newName: stg-commercial-systems.docker-registry.canonical.com/argo-ubuntu-exec-staging-ps5
+  newName: stg-commercial-systems.ps5.docker-registry.canonical.com/argo-ubuntu-exec-staging
 - name: argo-ubuntu-workflow-controller
-  newName: stg-commercial-systems.docker-registry.canonical.com/argo-ubuntu-workflow-controller-staging-ps5
+  newName: stg-commercial-systems.ps5.docker-registry.canonical.com/argo-ubuntu-workflow-controller-staging
