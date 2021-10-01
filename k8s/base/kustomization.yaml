@@ -1,0 +1,26 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- crd-argo.yaml
+- deploy-argo-server.yaml
+- rbac-argo.yaml
+- deploy-workflow-controller.yaml
+- service-argo.yaml
+- service-workflow-controller-metrics.yaml
+generatorOptions: 
+  disableNameSuffixHash: true  
+configMapGenerator:
+- name: workflow-controller-configmap
+  literals:
+    - containerRuntimeExecutor=pns
+  files:
+  - executor=workflow-controller/executor.yaml
+  - containerRuntimeExecutors=workflow-controller/containerRuntimeExecutors.yaml
+  - links=workflow-controller/links.yaml
+  - metricsConfig=workflow-controller/metricsConfig.yaml
+  - persistence=workflow-controller/persistence.yaml
+secretGenerator:
+  - name: argo-server-sso
+    literals:
+      - clientID=argo-server
+      - clientSecret=ZXhhbXBsZS1hcHAtc2VjcmV0
