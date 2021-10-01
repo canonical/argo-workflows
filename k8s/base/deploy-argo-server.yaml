@@ -11,9 +11,9 @@ spec:
       labels:
         app: argo-server
     spec:
-      containers:
       imagePullSecrets:
       - name: image-pull-secret
+      containers:
       - args:
         - server
         - --namespaced
