@@ -62,6 +62,13 @@ ARG DOCKER_VERSION
 ARG KUBECTL_VERSION
 ARG JQ_VERSION
 
+ARG http_proxy
+ARG https_proxy
+ARG no_proxy
+ARG NO_PROXY
+ARG GOPROXY
+ARG GOSUMDB
+
 RUN apt-get update && \
     apt-get --no-install-recommends install -y curl procps git apt-utils apt-transport-https ca-certificates tar mime-support && \
     apt-get clean \
