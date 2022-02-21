@@ -149,7 +149,7 @@ RUN touch ui/dist/app/index.html
 RUN cat .dockerignore >> .gitignore
 RUN git status --porcelain | cut -c4- | xargs git update-index --skip-worktree
 
-RUN --mount=type=cache,target=/root/.cache/go-build make dist/argo
+RUN --mount=type=cache,target=/root/.cache/go-build STATIC_FILES=true make dist/argo
 
 ####################################################################################################
 
