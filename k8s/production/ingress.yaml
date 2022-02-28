@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: argo-server
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /$2
+    ingress.kubernetes.io/protocol: https # Traefik
+    nginx.ingress.kubernetes.io/backend-protocol: https # ingress-nginx
+spec:
+  rules:
+    - host: collective-ps45.canonical.com
+      http:
+        paths:
+          - backend:
+              serviceName: argo-server
+              servicePort: 2746
+            path: /argo(/|$)(.*)
+  tls:
+  - hosts:
+    - collective-ps45.canonical.com
+    secretName: collective-ps45-canonical-com-tls

@@ -21,6 +21,9 @@ spec:
         - client
         - --secure=false
         - --loglevel=debug
+        env:
+        - name: BASE_HREF
+          value: /argo/
         image: argo-ubuntu-cli
         name: argo-server
         resources:
